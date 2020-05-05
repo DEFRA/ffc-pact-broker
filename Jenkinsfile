@@ -20,7 +20,7 @@ node {
       withCredentials([
         usernamePassword(credentialsId: 'artifactory-credentials', usernameVariable: 'username', passwordVariable: 'password')
       ]) {
-        sh "helm package ../helm/$chartName --dependency-update"
+        sh "helm package ./helm/$chartName --dependency-update"
         sh "curl -u $username:$password -X PUT ${ARTIFACTORY_REPO_URL}ffc-helm-local/$chartName-${tag}.tgz -T $chartName-${tag}.tgz"
       }
     }
