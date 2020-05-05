@@ -47,3 +47,6 @@ postgresService:
 ingress:
   class: nginx
   endpoint: ffc-pact-broker
+
+service:
+  port: 80
