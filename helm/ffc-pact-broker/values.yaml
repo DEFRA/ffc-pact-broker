@@ -43,3 +43,7 @@ postgresService:
   # within the cluster and accessible via postgresHost
   postgresExternalName:
   postgresPort: 5432
+
+ingress:
+  class: nginx
+  endpoint: ffc-pact-broker
