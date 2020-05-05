@@ -2,12 +2,16 @@
 
 def chartName = 'ffc-pact-broker'
 def tag = '1.0.0'
+def repoName = ''
 
 node {
   checkout scm
   try {
     stage('Set GitHub status as pending') {
       build.setGithubStatusPending()
+    }
+    stage('Set variables') {
+      repoName = build.getRepoName()
     }
     stage('Helm lint') {
       test.lintHelm(repoName)
