@@ -1,0 +1,19 @@
+{{- include "ffc-helm-library.service" (list . "ffc-pact-broker.service") -}}
+{{- define "ffc-pact-broker.service" -}}
+metadata:
+  annotations:
+  {{- if .Values.ingress.alb }}
+    {{- if .Values.pr }}
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.endpoint }}-{{ .Values.pr }}.{{ .Values.ingress.server }}
+    {{ else }}
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.endpoint }}.{{ .Values.ingress.server}}
+    {{- end }}
+  {{- end }}
+spec:
+  ports:
+  - port: {{ .Values.service.port}}
+    name: http
+    targetPort: http
+  selector:
+    {{- include "ffc-helm-library.selector-labels" . | nindent 4 }}
+{{- end -}}

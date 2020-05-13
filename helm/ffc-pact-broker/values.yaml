@@ -1,0 +1,52 @@
+container:
+  databaseHost: host.docker.internal
+  databaseUsername: postgres
+  databasePassword: postgres
+  databaseName: pact_broker
+  port: 9292
+  authUsername: pact
+  authPassword: pact
+  imagePullPolicy: IfNotPresent
+  requestMemory: 60Mi
+  requestCpu: 60m
+  limitMemory: 120Mi
+  limitCpu: 120m
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false  
+
+environment: development
+name: ffc-pact-broker
+namespace: ffc-devops
+workstream: ffc-devops
+image: pactfoundation/pact-broker:2.52.2-1
+
+labels: {}
+
+deployment:
+  restartPolicy: Always
+  priorityClassName: high
+  replicas: 1
+  minReadySeconds: 5
+  redeployOnChange: update this field to force a change
+  imagePullSecret:
+  runAsNonRoot: true
+  runAsUser: 1000
+
+postgresService:
+  postgresUsername: postgres@pact_broker
+  postgresPassword: changeme
+  postgresDatabase: pact_broker
+  # postgresHost is the host name of the PostgreSQL service
+  postgresHost: ffc-pact-broker-postgres
+  # postgresExternalName is the external host name to which PostgreSQL
+  # requests should be forwarded. If empty, PostgreSQL is assumed to be
+  # within the cluster and accessible via postgresHost
+  postgresExternalName:
+  postgresPort: 5432
+
+ingress:
+  class: nginx
+  endpoint: ffc-pact-broker
+
+service:
+  port: 80

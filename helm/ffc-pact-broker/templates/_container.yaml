@@ -1,0 +1,22 @@
+{{- define "ffc-pact-broker.container" -}}
+name: {{ quote .Values.name }}
+env:
+- name: PACT_BROKER_DATABASE_USERNAME
+  value: {{ quote .Values.container.databaseUsername }}
+- name: PACT_BROKER_DATABASE_PASSWORD
+  value: {{ quote .Values.container.databasePassword }}
+- name: PACT_BROKER_DATABASE_HOST
+  value: {{ quote .Values.container.databaseHost }}
+- name: PACT_BROKER_DATABASE_NAME
+  value: {{ quote .Values.container.databaseName }}
+- name: PACT_BROKER_PORT
+  value: {{ quote .Values.container.port }}
+- name: PACT_BROKER_BASIC_AUTH_USERNAME
+  value: {{ quote .Values.container.authUsername }}
+- name: PACT_BROKER_BASIC_AUTH_PASSWORD
+  value: {{ quote .Values.container.authPassword }}
+ports:
+- containerPort: {{ .Values.container.port }}
+  name: http
+  protocol: TCP
+{{- end -}}
