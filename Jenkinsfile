@@ -1,5 +1,4 @@
-@Library('defra-library@v-6') _
-import uk.gov.defra.ffc.Utils
+@Library('defra-library@v-6.0.1') _
 
 def chartName = 'ffc-pact-broker'
 def tag = '1.0.0'
@@ -12,7 +11,7 @@ node {
       build.setGithubStatusPending()
     }
     stage('Set variables') {
-      repoName = Utils.getRepoName()
+      repoName = build.getRepoName()
     }
     stage('Helm lint') {
       test.lintHelm(repoName)
