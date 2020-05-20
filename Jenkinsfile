@@ -11,7 +11,7 @@ node {
       build.setGithubStatusPending()
     }
     stage('Set variables') {
-      repoName = build.getRepoName()
+      repoName = utils.getRepoName()
     }
     stage('Helm lint') {
       test.lintHelm(repoName)
