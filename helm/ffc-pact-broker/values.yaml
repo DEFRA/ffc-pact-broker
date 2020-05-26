@@ -12,7 +12,8 @@ container:
   limitMemory: 120Mi
   limitCpu: 120m
   readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false  
+  allowPrivilegeEscalation: false
+  webhookHostWhitelist: override.me
 
 environment: development
 name: ffc-pact-broker
