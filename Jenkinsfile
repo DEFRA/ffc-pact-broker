@@ -1,4 +1,4 @@
-@Library('defra-library@v-6.0.1') _
+@Library('defra-library@v-6') _
 
 def chartName = 'ffc-pact-broker'
 def tag = '1.0.0'
@@ -26,7 +26,7 @@ node {
     }
     stage('Set GitHub status as success'){
       build.setGithubStatusSuccess()
-    }    
+    }
   }
   catch(e) {
     build.setGithubStatusFailure(e.message)
