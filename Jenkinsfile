@@ -20,7 +20,7 @@ node {
     }
 
     stage('Publish chart') {
-      helm.publishChart(DOCKER_REGISTRY, repoName, tag, 'acr')
+      helm.publishChart(DOCKER_REGISTRY, repoName, tag, 'acr', false)
     }
 
     stage('Set GitHub status as success'){
