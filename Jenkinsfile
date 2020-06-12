@@ -1,4 +1,4 @@
-@Library('defra-library@configure-chart-image-overwrite') _
+@Library('defra-library@v-6') _
 
 def chartName = 'ffc-pact-broker'
 def tag = '1.0.0'
