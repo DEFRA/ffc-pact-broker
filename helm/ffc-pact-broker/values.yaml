@@ -1,8 +1,4 @@
 container:
-  databaseHost: host.docker.internal
-  databaseUsername: postgres
-  databasePassword: postgres
-  databaseName: pact_broker
   port: 9292
   authUsername: pact
   authPassword: pact

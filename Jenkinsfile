@@ -1,7 +1,7 @@
-@Library('defra-library@v-6') _
+@Library('defra-library@v-8') _
 
 def chartName = 'ffc-pact-broker'
-def tag = '1.0.0'
+def tag = '1.1.0'
 def repoName = ''
 
 node {
