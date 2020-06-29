@@ -1,3 +1,28 @@
+environment: development
+name: ffc-pact-broker
+namespace: ffc-devops
+workstream: ffc-devops
+image: pactfoundation/pact-broker:2.52.2-1
+
+labels: {}
+
+containerConfigMap:
+  name: ffc-pact-broker-config-map
+
+containerSecret:
+  name: ffc-pact-broker-container-secret
+  type: Opaque
+
+deployment:
+  restartPolicy: Always
+  priorityClassName: high
+  replicas: 1
+  minReadySeconds: 5
+  redeployOnChange: update this field to force a change
+  imagePullSecret:
+  runAsNonRoot: true
+  runAsUser: 1000
+
 container:
   port: 9292
   authUsername: pact
@@ -10,24 +35,6 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   webhookHostWhitelist: override.me
-
-environment: development
-name: ffc-pact-broker
-namespace: ffc-devops
-workstream: ffc-devops
-image: pactfoundation/pact-broker:2.52.2-1
-
-labels: {}
-
-deployment:
-  restartPolicy: Always
-  priorityClassName: high
-  replicas: 1
-  minReadySeconds: 5
-  redeployOnChange: update this field to force a change
-  imagePullSecret:
-  runAsNonRoot: true
-  runAsUser: 1000
 
 postgresService:
   postgresUsername: postgres@pact_broker
@@ -44,6 +51,7 @@ postgresService:
 ingress:
   class: nginx
   endpoint: ffc-pact-broker
+  server: example.com
 
 service:
   port: 80
