@@ -1,5 +1,5 @@
 {{- if .Values.postgresService.postgresExternalName }}
-{{- include "ffc-helm-library.postgres-service" (list . "ffc-pact-broker-postgres.postgres-service") -}}
+{{- include "ffc-helm-library.postgres-service" (list . "ffc-pact-broker.postgres-service") -}}
 {{- end }}
 {{- define "ffc-pact-broker.postgres-service" -}}
 {{- end -}}

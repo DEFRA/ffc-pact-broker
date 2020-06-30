@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.container-config-map" (list . "ffc-pact-broker.config-map") -}}
+{{- define "ffc-pact-broker.config-map" -}}
+data:
+  PACT_BROKER_DATABASE_HOST: {{ quote .Values.postgresService.postgresHost }}
+  PACT_BROKER_DATABASE_NAME: {{ quote .Values.postgresService.postgresDatabase }}
+  PACT_BROKER_PORT: {{ quote .Values.container.port }}
+  PACT_BROKER_WEBHOOK_HOST_WHITELIST: {{ quote .Values.container.webhookHostWhitelist}}
+{{- end -}}
