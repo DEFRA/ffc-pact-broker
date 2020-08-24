@@ -55,4 +55,4 @@ ingress:
 
 service:
   port: 80
-  type: NodePort
+  type: ClusterIP
