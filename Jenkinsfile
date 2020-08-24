@@ -1,16 +1,12 @@
 @Library('defra-library@v-8') _
 
 def chartName = 'ffc-pact-broker'
-def tag = '1.1.0'
+def tag = '2.0.0'
 def repoName = ''
 
 node {
   checkout scm
-  try {
-    stage('Set GitHub status as pending') {
-      build.setGithubStatusPending()
-    }
-
+  try {    
     stage('Set variables') {
       repoName = utils.getRepoName()
     }
@@ -22,14 +18,7 @@ node {
     stage('Publish chart') {
       helm.publishChart(DOCKER_REGISTRY, repoName, tag, 'acr', false)
     }
-
-    stage('Set GitHub status as success'){
-      build.setGithubStatusSuccess()
-    }
   } catch(e) {
-    stage('Set GitHub status as fail') {
-      build.setGithubStatusFailure(e.message)
-    }
 
     stage('Send build failure slack notification') {
       notifySlack.buildFailure(e.message, '#generalbuildfailures')
