@@ -1,7 +1,7 @@
 environment: development
 name: ffc-pact-broker
-namespace: ffc-devops
-workstream: ffc-devops
+namespace: ffc-pact-broker
+workstream: ffc-pact-broker
 image: pactfoundation/pact-broker:2.52.2-1
 
 labels: {}
@@ -55,4 +55,4 @@ ingress:
 
 service:
   port: 80
-  type: NodePort
+  type: ClusterIP
