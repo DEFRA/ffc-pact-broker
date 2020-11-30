@@ -37,7 +37,7 @@ container:
   webhookHostWhitelist: override.me
 
 postgresService:
-  postgresUsername: postgres@pact_broker
+  postgresUser: postgres@pact_broker
   postgresPassword: changeme
   postgresDatabase: pact_broker
   # postgresHost is the host name of the PostgreSQL service
