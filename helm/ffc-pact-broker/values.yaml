@@ -34,7 +34,7 @@ container:
   limitCpu: 120m
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
-  webhookHostWhitelist: "jenkins-ffc.azure.defra.cloud"
+  webhookHostWhitelist: override.me
 
 postgresService:
   postgresUser: postgres@pact_broker
